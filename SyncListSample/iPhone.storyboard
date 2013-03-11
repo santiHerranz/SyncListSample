@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Login Page-->
+        <!--Login Page - Title-->
         <scene sceneID="3FU-vG-BFx">
             <objects>
                 <viewController id="BmN-Cl-pcD" customClass="LoginPage" sceneMemberID="viewController">
@@ -13,9 +13,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Mario" borderStyle="roundedRect" minimumFontSize="17" id="Tvf-x6-t9V">
-                                <rect key="frame" x="70" y="29" width="170" height="30"/>
+                                <rect key="frame" x="20" y="83" width="170" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="BmN-Cl-pcD" eventType="editingDidEnd" id="RHe-WK-0Rw"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nnA-Cy-txC">
                                 <rect key="frame" x="237" y="451" width="73" height="44"/>
@@ -32,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xvj-mA-tnZ">
-                                <rect key="frame" x="114" y="67" width="65" height="44"/>
+                                <rect key="frame" x="213" y="67" width="65" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Login">
@@ -46,11 +49,25 @@
                                     <action selector="loginAction:" destination="BmN-Cl-pcD" eventType="touchUpInside" id="sLO-wb-3he"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="KZ1-0r-8Gf">
+                                <rect key="frame" x="20" y="29" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Servicio:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="08v-3W-oYG">
+                                <rect key="frame" x="20" y="6" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5pa-NE-m3f"/>
+                    <navigationItem key="navigationItem" title="Title" id="XHf-PZ-fiK"/>
                     <connections>
+                        <outlet property="ServerSyncServiceURL" destination="KZ1-0r-8Gf" id="2f0-Dh-9mJ"/>
                         <outlet property="userName" destination="Tvf-x6-t9V" id="1Dw-wL-sXc"/>
                     </connections>
                 </viewController>
@@ -58,7 +75,7 @@
             </objects>
             <point key="canvasLocation" x="666" y="-12"/>
         </scene>
-        <!--List View Controller-->
+        <!--List View Controller - Title-->
         <scene sceneID="TB7-yQ-wg4">
             <objects>
                 <tableViewController id="hFt-yo-4w7" customClass="ListViewController" sceneMemberID="viewController">
@@ -86,7 +103,13 @@
                             <outlet property="delegate" destination="hFt-yo-4w7" id="tB9-DF-x1u"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xL6-6u-MdF"/>
+                    <navigationItem key="navigationItem" title="Title" id="oni-wo-JKT">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9tB-W5-2sI">
+                            <connections>
+                                <segue destination="w6T-C2-jVc" kind="push" identifier="newListDescription" id="rAa-vS-vIT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwr-rp-TiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,6 +122,43 @@
                     <view key="view" contentMode="scaleToFill" id="ruK-XC-vyl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kom-3a-RjO">
+                                <rect key="frame" x="20" y="73" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Z2e-gn-lGT">
+                                <rect key="frame" x="20" y="102" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="w6T-C2-jVc" eventType="editingDidEnd" id="hIl-hu-JmJ"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Po-wa-hMM">
+                                <rect key="frame" x="52" y="145" width="224" height="193"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ZNY-Jo-jHd">
+                                <rect key="frame" x="52" y="145" width="224" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="ItemView" id="UhY-j2-ZFI"/>
@@ -161,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylw-71-Gmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640" y="369"/>
+            <point key="canvasLocation" x="2132" y="533"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SWD-pq-zlk">
@@ -179,7 +239,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JnB-Nf-9ts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="176" y="52"/>
+            <point key="canvasLocation" x="172" y="-12"/>
         </scene>
     </scenes>
     <classes>
@@ -202,6 +262,7 @@
             <relationships>
                 <relationship kind="action" name="dismissKeyboard:"/>
                 <relationship kind="action" name="loginAction:"/>
+                <relationship kind="outlet" name="ServerSyncServiceURL" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="userName" candidateClass="UITextField"/>
             </relationships>
         </class>
@@ -211,4 +272,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="rAa-vS-vIT"/>
+    </inferredMetricsTieBreakers>
 </document>

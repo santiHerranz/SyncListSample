@@ -35,16 +35,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self.navigationItem setHidesBackButton:YES];
+	//[self.navigationItem setHidesBackButton:YES];
 
 	[self setManagedObjectContext:[(iPhoneListSampleAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]];
 
 	self.navigationItem.title = @"My Lists";
+    [self.navigationController   setToolbarHidden:FALSE];
  
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-																			   target:self action:@selector(insertNewObject:)];
-	self.navigationItem.rightBarButtonItem = addButton;
+//	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//																			   target:self action:@selector(insertNewObject:)];
+//	self.navigationItem.rightBarButtonItem = addButton;
 		
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
@@ -56,17 +57,18 @@
 	
 	UIBarButtonItem *spacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
 	UIBarButtonItem *syncButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(synchronize:)];
-	self.toolbarItems = [NSArray arrayWithObjects:spacerButton, syncButton, nil];
+	UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Salir" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+	self.toolbarItems = [NSArray arrayWithObjects:logoutButton, spacerButton, syncButton, nil];
 	
 	if (![Utils clientHasSynced:self.managedObjectContext])
 	{
-		[addButton setEnabled:NO];
+		[self.navigationItem.rightBarButtonItem setEnabled:NO];
 		[self.editButtonItem setEnabled:NO];
 		[self synchronize:self];
 	}
 	else 
 	{
-		[addButton setEnabled:YES];
+		[self.navigationItem.rightBarButtonItem setEnabled:YES];
 		[self.editButtonItem setEnabled:YES];
 	}
 	
@@ -84,14 +86,25 @@
 #pragma mark Refresh Button Delegate
 -(void)synchronize:sender
 {
-	SyncController *controller = [[SyncController alloc] initWithContext:self.managedObjectContext delegate:self];
+    iPhoneListSampleAppDelegate *app = (iPhoneListSampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+	SyncController *controller = [[SyncController alloc] initWithContext:self.managedObjectContext withBaseUrl:app.BaseUrl delegate:self];
 	[controller synchronize];
 }
+
+
+-(void)logout:sender
+{
+    [Utils cleanupCache:self.managedObjectContext];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
+
+}
+
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [managedObject valueForKey:@"listName"];	
+    cell.textLabel.text = [managedObject valueForKey:@"listName"];
 }
 
 #pragma mark -
@@ -170,6 +183,12 @@
         listDescriptionController.inAddMode = false;
         
         listDescriptionController.listToEdit = [fetchedResultsController objectAtIndexPath:selectedIndexPath];
+        
+    } else  if ([segue.identifier isEqualToString:@"newListDescription"]) {
+  
+        ListDescriptionViewController * listDescriptionController = segue.destinationViewController;
+        listDescriptionController.inAddMode = true;
+        
     }
 }
 

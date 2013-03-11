@@ -27,7 +27,6 @@
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																				  target:self action:@selector(cancelAction:)];
 	
-    [self.navigationController   setToolbarHidden:FALSE];
 	self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:saveButton, cancelButton, nil];
     
 	//[self.navigationController setToolbarItems:[NSArray arrayWithObjects:saveButton, cancelButton, nil]];

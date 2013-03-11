@@ -16,7 +16,7 @@
 @synthesize managedObjectContext, delegate, baseURL, downloadURL, uploadURL;
 
 
-- (id)initWithContext:(NSManagedObjectContext *)inContext delegate:(id)myDelegate
+- (id)initWithContext:(NSManagedObjectContext *)inContext withBaseUrl:(NSString *)url delegate:(id)myDelegate
 {
 	if ([super init])
 	{
@@ -24,9 +24,10 @@
 		self.delegate = myDelegate;
 		
 		// Get the base service address from the Info.plist file
-		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];  
-		NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-		self.baseURL = [NSString stringWithString:[plistDict valueForKey:@"ServiceRoot"]];				
+		//NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+		//NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+		//self.baseURL = [NSString stringWithString:[plistDict valueForKey:@"ServiceRoot"]];
+        self.baseURL = url;
 
 		// anc stores the userID which needs to be passed in the UploadChanges and DownloadChanges urls
 		Anchor *anc = [Utils getAnchor:inContext];

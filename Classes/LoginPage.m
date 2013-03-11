@@ -11,8 +11,10 @@
 #import "Utils.h"
 #import "ListViewController.h"
 
+
+
 @implementation LoginPage
-@synthesize userName, responseData;
+@synthesize userName, responseData, ServerSyncServiceURL;
 
 
 
@@ -21,8 +23,13 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+    
+    
+    [self.ServerSyncServiceURL setText:@"http://demo5.gruposca.net"];
+        
+    
 }
+
 
 
 
@@ -42,6 +49,10 @@
 	}
 	else 
 	{
+
+            iPhoneListSampleAppDelegate *app = (iPhoneListSampleAppDelegate *) [[UIApplication sharedApplication] delegate];
+        app.BaseUrl = self.ServerSyncServiceURL.text;
+        
 		// if user has logged in already, and userName is the same do not post login request
 		NSManagedObjectContext *managedObjectContext = [(iPhoneListSampleAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
 		Anchor *anc = [Utils getAnchor:managedObjectContext];
@@ -62,9 +73,9 @@
 #pragma mark login flow
 -(void) postRequestForLogin:(NSString*) user
 {
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];  
-	NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-	NSString *urlString = [NSString stringWithString:[plistDict valueForKey:@"ServiceRoot"]];
+
+    
+    NSString *urlString  = self.ServerSyncServiceURL.text;
 						   	
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/login.ashx/?username=%@",urlString, user]];
 	responseData = [NSMutableData data];
@@ -80,13 +91,7 @@
 {
 	if ([success boolValue])
 	{
-		//[Utils showAlert:@"Login" withMessage:@"Login success" withDelegate:self];
-        
-		//ListViewController *listViewController = [[ListViewController alloc] init];
-        
         [self performSegueWithIdentifier:@"listado" sender:self];
-        
-		//[self.navigationController pushViewController:listViewController animated:YES];
 	}
 	else 
 	{

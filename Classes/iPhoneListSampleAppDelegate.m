@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize rootController;
+@synthesize BaseUrl;
 
 
 #pragma mark -
@@ -23,9 +24,34 @@
 	//[window addSubview:rootController.view];
     //self.window.rootViewController = self.rootController;
 	//[self.window makeKeyAndVisible];
+    
+        
+//    [self saveToUserDefaults:@"http://localhost:12345"];
+    
+    
+
+
+    // Set BaseUrl for sync service from plist
+    // TODO: Get BaseUrl from user preferences
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+//	NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+//	NSString *urlString = [NSString stringWithString:[plistDict valueForKey:@"ServiceRoot"]];
+//    self.BaseUrl = urlString;
+//    
 	
 	return YES;
 }
+
+
+//-(void)saveToUserDefaults:(NSString*)myString
+//{
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    
+//    if (standardUserDefaults) {
+//        [standardUserDefaults setObject:myString forKey:@"LocalServer"];
+//        [standardUserDefaults synchronize];
+//    }
+//}
 
 
 /**

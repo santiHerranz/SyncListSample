@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NSURL *downloadURL;
 @property (nonatomic, strong) NSURL *uploadURL;
 
-- (id)initWithContext:(NSManagedObjectContext *)inContext delegate:(id)myDelegate;
+- (id)initWithContext:(NSManagedObjectContext *)inContext withBaseUrl:(NSString *)url delegate:(id)myDelegate;
 - (void)processDownloadResponse:(NSString *) responseString;
 -(void) downloadChanges;
 -(void) uploadChanges;
