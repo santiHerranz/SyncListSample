@@ -104,7 +104,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="oni-wo-JKT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9tB-W5-2sI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9tB-W5-2sI">
                             <connections>
                                 <segue destination="w6T-C2-jVc" kind="push" identifier="newListDescription" id="rAa-vS-vIT"/>
                             </connections>
@@ -256,6 +256,9 @@
         </class>
         <class className="ListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="newListButton:" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
         <class className="LoginPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginPage.h"/>
@@ -273,6 +276,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rAa-vS-vIT"/>
+        <segue reference="88a-ss-het"/>
     </inferredMetricsTieBreakers>
 </document>
