@@ -170,25 +170,31 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-
+-(void) performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForCell:sender];
+    ListEntity *l = [fetchedResultsController objectAtIndexPath:selectedIndexPath];
     
     if ([segue.identifier isEqualToString:@"ListDescription"]) {
         
-        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-        
-        ListDescriptionViewController * listDescriptionController = segue.destinationViewController;
+        ListDescriptionViewController *listDescriptionController = segue.destinationViewController;
         listDescriptionController.inAddMode = false;
-        
-        listDescriptionController.listToEdit = [fetchedResultsController objectAtIndexPath:selectedIndexPath];
+        listDescriptionController.listToEdit = l;
         
     } else  if ([segue.identifier isEqualToString:@"newListDescription"]) {
   
-        ListDescriptionViewController * listDescriptionController = segue.destinationViewController;
+        ListDescriptionViewController *listDescriptionController = segue.destinationViewController;
         listDescriptionController.inAddMode = true;
+
+    } else  if ([segue.identifier isEqualToString:@"itemView"]) {
         
+        ItemViewController *itemViewController = segue.destinationViewController;
+        itemViewController.list = l;
+
     }
 }
 
