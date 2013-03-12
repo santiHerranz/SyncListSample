@@ -42,7 +42,9 @@
 	self.navigationItem.title = @"My Lists";
     [self.navigationController   setToolbarHidden:FALSE];
  
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Salir" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+
+	self.navigationItem.leftBarButtonItem = logoutButton;//self.editButtonItem;
 //	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 //																			   target:self action:@selector(insertNewObject:)];
 //	self.navigationItem.rightBarButtonItem = addButton;
@@ -57,19 +59,18 @@
 	
 	UIBarButtonItem *spacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
 	UIBarButtonItem *syncButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(synchronize:)];
-	UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Salir" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
-	self.toolbarItems = [NSArray arrayWithObjects:logoutButton, spacerButton, syncButton, nil];
+	self.toolbarItems = [NSArray arrayWithObjects:self.editButtonItem, spacerButton, syncButton, nil];
 	
 	if (![Utils clientHasSynced:self.managedObjectContext])
 	{
-		[self.navigationItem.rightBarButtonItem setEnabled:NO];
-		[self.editButtonItem setEnabled:NO];
+		//[self.navigationItem.rightBarButtonItem setEnabled:NO];
+		[self.editButtonItem setEnabled:YES];
 		[self synchronize:self];
 	}
 	else 
 	{
-		[self.navigationItem.rightBarButtonItem setEnabled:YES];
-		[self.editButtonItem setEnabled:YES];
+		//[self.navigationItem.rightBarButtonItem setEnabled:YES];
+		[self.editButtonItem setEnabled:NO];
 	}
 	
 }
@@ -340,8 +341,5 @@
 
 
 
-
-- (IBAction)newListButton:(UIBarButtonItem *)sender {
-}
 @end
 
