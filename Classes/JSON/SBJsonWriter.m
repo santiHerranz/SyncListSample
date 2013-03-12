@@ -73,8 +73,8 @@
 }
 
 
-- (NSString*)indent { //\n
-    return [@"" stringByPaddingToLength:1 + 2 * depth withString:@" " startingAtIndex:0];
+- (NSString*)indent { //
+    return [@"\n" stringByPaddingToLength:1 + 2 * depth withString:@" " startingAtIndex:0];
 }
 
 - (BOOL)appendValue:(id)fragment into:(NSMutableString*)json {
@@ -204,7 +204,7 @@
                 case '"':   [json appendString:@"\\\""];       break;
                 case '\\':  [json appendString:@"\\\\"];       break;
                 case '\t':  [json appendString:@"\\t"];        break;
-                case '\n':  [json appendString:@""];        break; //\\n
+                case '\n':  [json appendString:@"\\n"];        break; //
                 case '\r':  [json appendString:@"\\r"];        break;
                 case '\b':  [json appendString:@"\\b"];        break;
                 case '\f':  [json appendString:@"\\f"];        break;

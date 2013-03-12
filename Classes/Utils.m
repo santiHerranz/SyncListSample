@@ -27,7 +27,7 @@
 {
 	SBJSON *json = [[SBJSON alloc] init];
 	[json setSortKeys:YES];
-	[json setHumanReadable:NO];  //SHM: introduce \n y genera error
+	[json setHumanReadable:YES]; 
 	
 	if (changes == nil)
 	{
