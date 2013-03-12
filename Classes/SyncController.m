@@ -31,12 +31,14 @@
 
 		// anc stores the userID which needs to be passed in the UploadChanges and DownloadChanges urls
 		Anchor *anc = [Utils getAnchor:inContext];
-		self.uploadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/?syncScope=DefaultScope&operation=UploadChanges&userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
-        
         
         // Corrección de : http://social.microsoft.com/Forums/en/synctoy/thread/e0a3d8b9-ba9c-4bcf-8c1b-14394d882b6b?prof=required
-		//self.downloadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/?syncScope=DefaultScope&operation=DownloadChanges&userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
         
+        
+        //self.uploadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/?syncScope=DefaultScope&operation=UploadChanges&userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
+		self.uploadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/DefaultScope/UploadChanges?userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
+        
+		//self.downloadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/?syncScope=DefaultScope&operation=DownloadChanges&userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
         self.downloadURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/DefaultScope/DownloadChanges?userid=%@", self.baseURL, [anc valueForKey:@"userID"]]];
 		
 	}
