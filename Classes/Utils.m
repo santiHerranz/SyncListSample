@@ -326,7 +326,10 @@
 	
 	NSDateFormatter* customDateFormatter = [[NSDateFormatter alloc]init];
 	[customDateFormatter setDateStyle:NSDateFormatterNoStyle];
-	[customDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SS"];
+
+    //Solution found at : http://stackoverflow.com/questions/13169754/microsoft-sync-framework-toolkit-iphone-example-date-format-wrong
+	//OLD: [customDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SS"];
+	[customDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSSSSSS"];
 	
 	NSString *dateString = [[customDateFormatter stringFromDate:date] stringByReplacingOccurrencesOfString:@" " withString:@"T"];
 	return dateString;
