@@ -224,7 +224,8 @@
 	for (TagItemMappingEntity *tagItemMapping in tagItemMappingToUpload)
 	{
 		bool isTombstone = [tagItemMapping.IsTombstone boolValue];
-		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/DefaultScope.TagItemMappings(TagID=%@, ItemID=guid'%@', UserID=guid'%@')", baseURL, [tagItemMapping tagID], [tagItemMapping itemID], [anc userID]];
+        // OLD: /DefaultScopeSyncService.svc/DefaultScope.TagItemMappings
+		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/TagItemMappings(TagID=%@, ItemID=guid'%@', UserID=guid'%@')", baseURL, [tagItemMapping tagID], [tagItemMapping itemID], [anc userID]];
 		NSDictionary *metadata = nil;
 		
 		if (!isTombstone)
@@ -264,7 +265,8 @@
 	for (ItemEntity *item in itemsToUpload)
 	{
 		bool isTombstone = [item.IsTombstone boolValue];
-		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/DefaultScope.Items(ID=guid'%@')", baseURL, [item ID]];
+        //OLD: /DefaultScopeSyncService.svc/DefaultScope.Items
+		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/Items(ID=guid'%@')", baseURL, [item ID]];
 		NSDictionary *metadata = nil;
 		
 		if (!isTombstone)
@@ -324,7 +326,8 @@
 	{
 		
 		bool isTombstone = [[list primitiveValueForKey:@"IsTombstone"] boolValue];
-		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/DefaultScope.Lists(ID=guid'%@')", baseURL, [list ID]];
+        // OLD: /DefaultScopeSyncService.svc/DefaultScope.Lists
+		NSString *uri = [NSString stringWithFormat:@"%@/DefaultScopeSyncService.svc/List(ID=guid'%@')", baseURL, [list ID]];
 		NSDictionary *metadata = nil;
 		
 		if (!isTombstone)
